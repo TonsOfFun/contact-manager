@@ -18,6 +18,14 @@ RSpec.describe ContactManager do
     end
   end
 
+  describe ".formatted_contact" do
+    subject { ContactManager.formatted_contact(contact) }
+
+    it "returns a formatted string representation of the contact" do
+      expect(subject).to eq(formatted_contact)
+    end
+  end
+
   # * Should be a method that allows to find a single contact by email in O(1) time (Hash Lookup is Linear so we'll use that).
   describe "#find_by_email" do
     subject { ContactManager.new(contacts_csv).find_by_email(contact['email']) }
