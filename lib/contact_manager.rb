@@ -13,6 +13,10 @@ class ContactManager
     @contacts_by_email[email.downcase]
   end
 
+  def self.formatted_contact(contact)
+    "Last: #{contact['last_name']}, First: #{contact['first_name']}, Phone: #{contact['phone']}, E-Mail: #{contact['email']}"
+  end
+
   protected
   def parse_contacts(contacts_csv)
     keys = %w{ first_name last_name email phone }
