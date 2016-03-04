@@ -17,4 +17,13 @@ RSpec.describe ContactManager do
       expect(subject[email_downcased]).to eq(contact)
     end
   end
+
+  # * Should be a method that allows to find a single contact by email in O(1) time (Hash Lookup is Linear so we'll use that).
+  describe "#find_by_email" do
+    subject { ContactManager.new(contacts_csv).find_by_email(contact['email']) }
+
+    it "renders contact matching the given email" do
+      expect(subject).to eq(contact)
+    end
+  end
 end
