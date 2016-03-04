@@ -11,10 +11,14 @@ RSpec.describe ContactManager do
   end
 
   describe ".new" do
-    subject { ContactManager.new(contacts_csv).contacts_by_email }
+    subject { ContactManager.new(contacts_csv).contacts_indexes }
 
-    it "returns hash contacts_by_email the with email downcased as keys and contact as values" do
-      expect(subject[email_downcased]).to eq(contact)
+    it "returns hash by_email the with email downcased as keys and contact as values" do
+      expect(subject[:by_email][email_downcased]).to eq(contact)
+    end
+
+    it "returns hash by_last_initial with the last initial downcased as keys and an array of contacts as  values" do
+      expect(subject[:by_last_initial][last_initial_downcased].last).to eq(contact)
     end
   end
 

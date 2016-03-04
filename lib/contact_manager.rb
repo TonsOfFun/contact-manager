@@ -2,15 +2,15 @@ require 'csv'
 
 class ContactManager
   def initialize(contacts_csv)
-    @contacts_by_email = parse_contacts(contacts_csv)
+    @contacts_indexes = parse_contacts(contacts_csv)
   end
 
-  def contacts_by_email
-    @contacts_by_email ||= {}
+  def contacts_indexes
+    @contacts_indexes ||= { by_email: {} }
   end
 
   def find_by_email(email)
-    @contacts_by_email[email.downcase]
+    @contacts_indexes[:by_email][email.downcase]
   end
 
   def self.formatted_contact(contact)
@@ -23,9 +23,9 @@ class ContactManager
     contacts = CSV.parse(contacts_csv).map {|a| Hash[ keys.zip(a) ] }
 
     for contact in contacts
-      contacts_by_email[contact['email'].downcase] = contact
+      contacts_indexes[:by_email][contact['email'].downcase] = contact
     end
 
-    contacts_by_email
+    contacts_indexes
   end
 end
