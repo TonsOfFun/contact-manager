@@ -30,6 +30,15 @@ RSpec.describe ContactManager do
     end
   end
 
+  # * Should be able to print all the contacts which last name starts with a given letter, sorted by the last name.
+  describe "#find_by_last_initial" do
+    subject { ContactManager.new(contacts_csv).find_by_last_initial('s') }
+
+    it "renders a string representation of the contact" do
+      expect(subject.last).to eq(contact)
+    end
+  end
+
   # * Should be a method that allows to find a single contact by email in O(1) time (Hash Lookup is Linear so we'll use that).
   describe "#find_by_email" do
     subject { ContactManager.new(contacts_csv).find_by_email(contact['email']) }
