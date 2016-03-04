@@ -22,7 +22,7 @@ RSpec.describe ContactManager do
   describe "#find_by_email" do
     subject { ContactManager.new(contacts_csv).find_by_email(contact['email']) }
 
-    it "renders contact matching the given email" do
+    it "returns contact matching the given email" do
       expect(subject).to eq(contact)
     end
   end

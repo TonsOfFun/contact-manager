@@ -9,6 +9,10 @@ class ContactManager
     @contacts_by_email ||= {}
   end
 
+  def find_by_email(email)
+    @contacts_by_email[email.downcase]
+  end
+
   protected
   def parse_contacts(contacts_csv)
     keys = %w{ first_name last_name email phone }
